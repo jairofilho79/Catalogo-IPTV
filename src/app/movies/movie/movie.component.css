@@ -1,0 +1,15 @@
+.card {
+  background-color: #202020;
+}
+
+img{
+  height:25vh;
+}
+
+.card-title{
+  color:#ffffff;
+}
+
+.activeCard {
+  border: 0.25rem solid white;
+}

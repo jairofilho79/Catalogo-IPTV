@@ -1,0 +1,45 @@
+<div class="text-center mt-3 mb-3">
+  <form>
+    <input
+      id="searchInput"
+      class="border-bottom border-white"
+      type="search"
+      placeholder="Digite o nome do filme e aperte ENTER"
+      autocomplete="off"
+      autofocus
+      (keydown.enter)="getMovies($event)"
+      (focus)="inputFocus()"
+      (blur)="inputBlur()"
+      [(ngModel)]='querySearch'
+      [ngModelOptions]="{standalone: true}"
+    />
+  </form>
+</div>
+
+<div *ngIf="hasMovies === true; else noMovies">
+  <p class="resultText ml-3">{{movies.length}} resultados para '{{queryTitle}}'</p>
+  <ol class="list-unstyled row ml-3">
+    <li *ngFor="let movie of movies; let i = index" class="col-3 py-2">
+      <app-movie
+        [url]="movie.Poster"
+        [title]="movie.Title"
+        [isActive]="i === activeIndex"
+    >
+    </app-movie>
+    </li>
+  </ol>
+</div>
+
+<div *ngIf="hasMovies === false">
+  <p class="resultText ml-3">Nenhum resultado para '{{queryTitle}}'</p>
+</div>
+
+<div *ngIf="hasMovies === undefined">
+  <p class="resultText ml-3">Pesquise por um filme ou uma série!</p>
+</div>
+
+<ng-template *ngIf="hasMovies == false;" #loadingMovies>
+    Procurando Filmes ou Séries...
+</ng-template> -->
+
+

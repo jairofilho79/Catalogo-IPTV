@@ -1,0 +1,11 @@
+#container {
+  display: inline-flex;
+  justify-content: space-between;
+}
+#body-container {
+  color: #ffffff;
+}
+
+.activeButton {
+  border: 0.25rem solid white;
+}

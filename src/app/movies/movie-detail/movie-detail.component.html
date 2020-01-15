@@ -1,0 +1,21 @@
+<div id="container">
+  <img [src]="movie.Poster" [alt]="movie.Title">
+  <div id="body-container" class="m-5 p-5">
+    <h1>{{movie.Title}}</h1>
+    <small class="mb-5">{{movie.Runtime}} - {{movie.Genre}}</small>
+
+    <p class="mt-5">{{movie.Plot}}</p>
+    <p><strong>Atores</strong>: {{movie.Actors}}</p>
+    <p><strong>Diretor(a)</strong>: {{movie.Director}}</p>
+    <br>
+    <p><strong>Idioma Original</strong>: {{movie.Language}}</p>
+    <br>
+    <!-- <p *NgFor='let rating of movie.Ratings'>
+      <strong>{{rating.Source}}</strong>:
+      {{rating.Value}}
+    </p> -->
+    <button [ngClass]="{activeButton: currentButton === 'back'}" class="btn btn-primary mr-3">Voltar</button>
+    <button [ngClass]="{activeButton: currentButton === 'newSearch'}" class="btn btn-secondary">Nova Busca</button>
+  </div>
+
+</div>
