@@ -14,8 +14,20 @@
       <strong>{{rating.Source}}</strong>:
       {{rating.Value}}
     </p> -->
-    <button [ngClass]="{activeButton: currentButton === 'back'}" class="btn btn-primary mr-3">Voltar</button>
-    <button [ngClass]="{activeButton: currentButton === 'newSearch'}" class="btn btn-secondary">Nova Busca</button>
+    <button
+      [ngClass]="{activeButton: currentButton === 'back'}"
+      class="btn btn-primary mr-3"
+      (click)="goBack()"
+    >
+      Voltar
+    </button>
+    <button
+      [ngClass]="{activeButton: currentButton === 'newSearch'}"
+      class="btn btn-secondary"
+      (click)="goNewSearch()"
+    >
+      Nova Busca
+    </button>
   </div>
 
 </div>

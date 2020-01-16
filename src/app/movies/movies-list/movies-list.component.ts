@@ -21,6 +21,7 @@ export enum KEY_CODE {
 })
 export class MoviesListComponent implements OnInit {
   ngOnInit(): void {
+    this.moviesListService.currentMovieIndex.subscribe(movie => this.activeIndex = movie)
     this.moviesListService.currentMovies.subscribe(movies => this.movies = movies)
     this.moviesListService.currentQuerySearch.subscribe(query => this.querySearch = query)
     this.moviesListService.currentQueryTitle.subscribe(title => this.queryTitle = title)
@@ -64,15 +65,15 @@ export class MoviesListComponent implements OnInit {
     } else
 
     if (event.keyCode === KEY_CODE.DOWN_ARROW) {
-      this.setInputBlur();
+      if(this.isInputFocus) {
+        this.setInputBlur();
+        return;
+      }
       this.goDown()
     } else
 
     if (event.keyCode === KEY_CODE.ENTER) {
       if(this.isInputFocus) return;
-      this.setHasMovie();
-      this.setNewQuerySearch();
-      this.setNewMovie();
       this.goToMovie();
     }
   }
@@ -83,8 +84,8 @@ export class MoviesListComponent implements OnInit {
     return !isPossible;
   }
   goUp():Boolean      {
-    const isPossible = this.activeIndex - 4 < 0
-    this.activeIndex =  isPossible ? this.activeIndex : this.activeIndex - 4
+    const isPossible = this.activeIndex - 3 < 0
+    this.activeIndex =  isPossible ? this.activeIndex : this.activeIndex - 3
     return !isPossible;
   }
   goRight():Boolean   {
@@ -93,12 +94,16 @@ export class MoviesListComponent implements OnInit {
     return !isPossible;
   }
   goDown():Boolean    {
-    const isPossible = this.activeIndex + 4 >= this.movies.length
-    this.activeIndex =  isPossible ? this.activeIndex : this.activeIndex + 4
+    const isPossible = this.activeIndex + 3 >= this.movies.length
+    this.activeIndex =  isPossible ? this.activeIndex : this.activeIndex + 3
     return !isPossible;
   }
-  goToMovie():void {
-    this.router.navigate( ['movie/'+this.movies[this.activeIndex].imdbID], )
+  goToMovie(i:number=this.activeIndex):void {
+    this.activeIndex = i
+    this.setHasMovie();
+    this.setNewQuerySearch();
+    this.setNewMovie();
+    this.router.navigate( ['movie/'+this.movies[i].imdbID], )
   }
 
   inputFocus() {this.isInputFocus = true}

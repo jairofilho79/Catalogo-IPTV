@@ -1,4 +1,4 @@
-<div class="text-center mt-3 mb-3">
+<div class="text-center mt-4 mb-4">
   <form>
     <input
       id="searchInput"
@@ -17,13 +17,14 @@
 </div>
 
 <div *ngIf="hasMovies === true; else noMovies">
-  <p class="resultText ml-3">{{movies.length}} resultados para '{{queryTitle}}'</p>
-  <ol class="list-unstyled row ml-3">
-    <li *ngFor="let movie of movies; let i = index" class="col-3 py-2">
+  <p class="resultText ml-5 mr-5">{{movies.length}} resultados para '{{queryTitle}}'</p>
+  <ol class="list-unstyled row ml-3 mr-3">
+    <li *ngFor="let movie of movies; let i = index" class="col-4 py-2">
       <app-movie
         [url]="movie.Poster"
         [title]="movie.Title"
         [isActive]="i === activeIndex"
+        (click)="goToMovie(i)"
     >
     </app-movie>
     </li>
@@ -31,15 +32,15 @@
 </div>
 
 <div *ngIf="hasMovies === false">
-  <p class="resultText ml-3">Nenhum resultado para '{{queryTitle}}'</p>
+  <p class="resultText ml-5 mr-5">Nenhum resultado para '{{queryTitle}}'</p>
 </div>
 
 <div *ngIf="hasMovies === undefined">
-  <p class="resultText ml-3">Pesquise por um filme ou uma série!</p>
+  <p class="resultText ml-5 mr-5">Pesquise por um filme ou uma série!</p>
 </div>
 
-<ng-template *ngIf="hasMovies == false;" #loadingMovies>
-    Procurando Filmes ou Séries...
+<!-- <ng-template *ngIf="hasMovies == false;" #loadingMovies>
+  <p class="resultText ml-5 mr-5">Procurando Filmes ou Séries...</p>
 </ng-template> -->
 
 

@@ -18,7 +18,7 @@ export enum KEY_CODE {
 })
 export class MovieDetailComponent implements OnInit {
 
-  currentButton:string;
+  currentButton:string = "back";
   movie:Movie
 
   constructor(
@@ -35,31 +35,32 @@ export class MovieDetailComponent implements OnInit {
 
   keyEvent(event: KeyboardEvent) {
     if (event.keyCode === KEY_CODE.LEFT_ARROW) {
-      this.goBack();
+      this.currentButton = 'back'
     } else
     if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
-      this.goNewSearch();
+      this.currentButton = 'newSearch'
     }
     if (event.keyCode === KEY_CODE.ENTER) {
       if(this.currentButton === 'back') {
-        this.location.back();
+        this.goBack()
       } else
       if(this.currentButton === 'newSearch') {
-        this.moviesListService.changeMovie(0);
-        this.moviesListService.changeMovies([]);
-        this.moviesListService.changeQuerySearch("");
-        this.moviesListService.changeHasMovie(undefined);
-        this.location.back();
+        this.goNewSearch()
       }
     }
   }
 
     goBack():void {
         this.currentButton = 'back'
+        this.location.back();
     }
 
     goNewSearch():void {
       this.currentButton = 'newSearch'
+      this.moviesListService.changeMovie(0);
+      this.moviesListService.changeMovies([]);
+      this.moviesListService.changeQuerySearch("");
+      this.moviesListService.changeHasMovie(undefined);
+      this.location.back();
     }
-
 }

@@ -30,7 +30,6 @@ export class MovieService {
   }
 
   // getMoviesFromAPIMock(querySearch: string) {
-  //   console.log(querySearch)
 
   //   return this.http
   //     .get<Movie[]>(API)
